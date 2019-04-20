@@ -1,4 +1,4 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.testy;
 
 
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.dominik.alkotest.R;
 
 import java.util.Random;
 import java.util.ArrayList;

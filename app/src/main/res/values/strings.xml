@@ -1,19 +1,53 @@
 <resources>
-    <string name="welcomeMessage">Witaj w Alkotest!</string>
-    <string name="logIn">Zaloguj</string>
+    #musthave
+    <string name="appname">LOKOMOTO</string>
+    <string name="app_name">LOKOMOTO</string>
+    <string name="welcomeMessage">Witaj w LokoMoko!</string>
+
+    #main
     <string name="newAccount">Nowe konto</string>
-    <string name="czas">Czas Reakcji</string>
-    <string name="imie">Imię</string>
-    <string name="podaj_imie">Podaj swoje imię:</string>
-    <string name="appname">ALKOTEST</string>
-    <string name="app_name">ALKOTEST</string>
-    <string name="deleteAccount">Usuń konto</string>
+    <string name="logIn">Zaloguj</string>
+    <string name="usunKonto">Usuń konto</string>
+
+    #logowanie
+    <string name="logInfo">Podaj swój login i haslo</string>
+    <string name="email">Adres email</string>
+    <string name="haslo">Hasło</string>
+
+    #rejestracja
+    <string name="rejInfo">Podaj swój adres email i hasło</string>
+    <string name="rej">Zarejestruj</string>
+
+    #home
+    <string name="before">Pierwsze testy</string>
+    <string name="after">Porównaj wynik</string>
+
+    #tests
     <string name="test1">Test nr.1</string>
     <string name="test2">Test nr. 2</string>
     <string name="zapisz_wynik">Zapisz wynik</string>
-    <string name="wybierz_profil">Wybierz profil:</string>
-    <string name="usun_profil">Usun profil</string>
+
+    #test1
+    <string name="czas">Czas Reakcji</string>
+
+    #test2
+
+    #testpo
+    <string name="testporownawczy">Wykonaj test po raz drugi by porwównać wyniki</string>
+    <string name="porownaj_wyniki">Porównaj wyniki</string>
+
+    #wynik
     <string name="loguj_profil">Wybierz swój profil:</string>
     <string name="porownaj">Porównaj</string>
-    <string name="porownaj_wyniki">Porównaj wyniki</string>
+
+    #not in use
+    <string name="imie">Imię</string>
+    <string name="podaj_imie">Podaj swoje imię:</string>
+    <string name="wybierz_profil">Wybierz profil:</string>
+    <string name="usun_profil">Usun profil</string>
+
+
+
+
+
 </resources>

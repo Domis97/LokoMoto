@@ -1,9 +1,14 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.nawigacja;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.dominik.alkotest.Wynik;
+import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.testy.Test1;
+import com.example.dominik.alkotest.testy.Test2;
 
 /**
  * Klasa odpowiadająca za obsługę testow po wypiciu alkoholu testow porownanwczych
@@ -50,7 +55,7 @@ public class TestPo extends AppCompatActivity {
     protected void logowanie(View view) {
         long temp = Long.valueOf(wartosc);//zeby nie wchodzil do buttona
         if (temp != 0) {
-            Intent myIntent = new Intent(view.getContext(), Loguj.class);
+            Intent myIntent = new Intent(view.getContext(), Wynik.class);
             myIntent.putExtra("wartosc", wartosc);
             startActivity(myIntent);
         }

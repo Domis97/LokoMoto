@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 
-public class Loguj extends AppCompatActivity {
+public class Wynik extends AppCompatActivity {
 
     private String wybor;
     private String wynik1;
@@ -33,7 +33,7 @@ public class Loguj extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loguj);
+        setContentView(R.layout.activity_wynik);
 
 
         Bundle temp = getIntent().getExtras();//przekazani wynik2

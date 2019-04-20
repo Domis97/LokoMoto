@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "547863970475",
+    "firebase_url": "https://alkotest-c3bba.firebaseio.com",
+    "project_id": "alkotest-c3bba",
+    "storage_bucket": "alkotest-c3bba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547863970475:android:8eb79580affb387b",
+        "android_client_info": {
+          "package_name": "com.example.dominik.alkotest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547863970475-g3t5gtn4ls7jgvum4sopvs966rtfo79q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dominik.alkotest",
+            "certificate_hash": "e529bbda1fdcce818be0047c1504d79d1054aa9b"
+          }
+        },
+        {
+          "client_id": "547863970475-gm2malv6outn41q0j411nlbcg4f80nm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU0iwtkjD9X8W_8wQQjPMJO8fiKxStgd0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547863970475-gm2malv6outn41q0j411nlbcg4f80nm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

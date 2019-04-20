@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    tools:context=".TestPo">
+    android:background="@color/logoBackground"
+    tools:context=".nawigacja.TestPo">
 
     <TextView
         android:id="@+id/tekstlog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="320dp"
-        android:text="Posiadasz konto?\n Wykonaj testy!"
+        android:text="@string/testporownawczy"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/colorLogo"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="208dp"
         android:background="@drawable/buttonshape"
         android:onClick="test1"
-        android:text="Test nr. 1"
+        android:text="@string/test1"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:onClick="test2"
-        android:text="Test nr. 2"
+        android:text="@string/test2"
         android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.931"

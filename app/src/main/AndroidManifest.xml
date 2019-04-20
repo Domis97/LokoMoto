@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dominik.alkotest">
+
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        android:fullBackupContent="">
+
+
+        <activity android:name=".firebase.Rejestracja" />
+        <activity android:name=".Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".Loguj" />
-        <activity android:name=".Rejestruj" />
-        <activity android:name=".Test1" />
-        <activity android:name=".Test2" />
-        <activity android:name=".TestPo" />
-        <activity android:name=".Usun"/>
+        <activity android:name=".nawigacja.Home"/>
+        <activity android:name=".firebase.Logowanie" />
+        <activity android:name=".nawigacja.Main" />
+        <activity android:name=".Wynik" />
+        <activity android:name=".nawigacja.Tests" />
+        <activity android:name=".testy.Test1" />
+        <activity android:name=".testy.Test2" />
+        <activity android:name=".nawigacja.TestPo" />
+        <activity android:name=".Usun" />
     </application>
 
 </manifest>

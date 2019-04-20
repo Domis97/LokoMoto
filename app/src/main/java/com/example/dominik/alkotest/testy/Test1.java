@@ -1,4 +1,4 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.testy;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.example.dominik.alkotest.R;
 
 /**
  * Klasa odpowiadająca za obsługę test1

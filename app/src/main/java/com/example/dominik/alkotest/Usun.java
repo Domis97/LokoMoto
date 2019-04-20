@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.dominik.alkotest.nawigacja.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class Usun extends AppCompatActivity {
                     public void onClick(View v) {
                         getApplicationContext().deleteFile(wybor);
                         spinner();
-                        Intent myIntent = new Intent(v.getContext(), HomeActivity.class);
+                        Intent myIntent = new Intent(v.getContext(), Main.class);
                         startActivity(myIntent);
                     }
                 }

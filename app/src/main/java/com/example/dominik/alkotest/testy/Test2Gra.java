@@ -1,4 +1,6 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.testy;
+
+import com.example.dominik.alkotest.testy.Test2;
 
 /**
  * * Klasa odpowiadająca za obsługę gry w tescie2

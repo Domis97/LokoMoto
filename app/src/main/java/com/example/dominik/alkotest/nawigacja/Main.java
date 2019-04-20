@@ -1,19 +1,24 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.nawigacja;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.Usun;
+import com.example.dominik.alkotest.firebase.Logowanie;
+import com.example.dominik.alkotest.firebase.Rejestracja;
+
 /**
  * Klasa odpowiadająca za obsługę ekranu startowego
  */
 
-public class HomeActivity extends AppCompatActivity {
+public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
     }
 
     /**
@@ -22,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void rejestruj (View view){
 
-        android.content.Intent myIntent = new android.content.Intent(view.getContext(), Rejestruj.class);
+        android.content.Intent myIntent = new android.content.Intent(view.getContext(), Rejestracja.class);
         startActivity(myIntent);
 
 
@@ -34,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void loguj (View view){
 
-        android.content.Intent myIntent = new android.content.Intent(view.getContext(), TestPo.class);
+        android.content.Intent myIntent = new android.content.Intent(view.getContext(), Logowanie.class);
         startActivity(myIntent);
 
     }
