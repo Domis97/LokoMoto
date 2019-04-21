@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+/**
+ * Klasa odpowiadająca za logowanie użytkowników aplikacji
+ */
+
 
 public class Logowanie extends AppCompatActivity {
 

@@ -60,7 +60,7 @@ public class Usun extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = findViewById(R.id.profile);
+        Spinner sItems = findViewById(R.id.skala);
         sItems.setAdapter(adapter);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

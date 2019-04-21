@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Klasa odpowiadająca za obsługę ekranu rejestracji
+ * Klasa odpowiadająca za obsługę rejestracji
  */
 
 public class Rejestracja extends AppCompatActivity {

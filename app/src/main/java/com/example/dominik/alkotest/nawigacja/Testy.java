@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.ScoreInfo;
 import com.example.dominik.alkotest.testy.Test1;
 import com.example.dominik.alkotest.testy.Test2;
 import com.example.dominik.alkotest.testy.Test2Gra;
@@ -29,17 +30,17 @@ import static android.content.ContentValues.TAG;
  */
 
 
-public class Tests extends AppCompatActivity {
-    protected Map<String, Object> score = new HashMap<>();
+public class Testy extends AppCompatActivity {
     private Test2Gra test2Gra;
     private String value;
+    ScoreInfo scoreInfo = new ScoreInfo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tests);
         Button save = findViewById(R.id.zapisz);
-        score.put("uID", FirebaseAuth.getInstance().getUid());
+        scoreInfo.setuID(FirebaseAuth.getInstance().getUid());
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +72,7 @@ public class Tests extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         value = data.getStringExtra("someValue");
-        score.put("test1", value);
+        scoreInfo.setScore1(value);
     }
 
     /**
@@ -82,21 +83,21 @@ public class Tests extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("scores").document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                .set(score)
-                .addOnCompleteListener(Tests.this, new OnCompleteListener<Void>() {
+                .set(scoreInfo.getScoreInfo())
+                .addOnCompleteListener(Testy.this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
 
-                            Log.d(TAG, "update:success");
+                            Log.d(TAG, "update:success" + scoreInfo.toString());
 
-                            Toast.makeText(Tests.this, "Dane zostały wysłane.",
+                            Toast.makeText(Testy.this, "Dane zostały wysłane.",
                                     Toast.LENGTH_SHORT).show();
-                            Intent homeIntent = new Intent(Tests.this, Home.class);
+                            Intent homeIntent = new Intent(Testy.this, Home.class);
                             startActivity(homeIntent);
                         } else {
                             Log.w(TAG, "update:failure", task.getException());
-                            Toast.makeText(Tests.this, "Dane nie zostały wysłane.",
+                            Toast.makeText(Testy.this, "Dane nie zostały wysłane.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

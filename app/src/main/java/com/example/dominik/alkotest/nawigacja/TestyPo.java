@@ -5,15 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.dominik.alkotest.Wynik;
 import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.firebase.Wynik;
 import com.example.dominik.alkotest.testy.Test1;
 import com.example.dominik.alkotest.testy.Test2;
 
 /**
  * Klasa odpowiadająca za obsługę testow po wypiciu alkoholu testow porownanwczych
  */
-public class TestPo extends AppCompatActivity {
+public class TestyPo extends AppCompatActivity {
 
     protected String wartosc = "0";
 

@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".Wynik">
+    tools:context=".firebase.Wynik">
 
     <TextView
         android:id="@+id/tekstlog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="320sp"
-        android:text="@string/loguj_profil"
+        android:text="@string/wybierz_skale"
         android:textStyle="bold"
+        android:gravity="center"
         android:textColor="@color/colorLogo"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/profile"
+        android:id="@+id/skala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/porownaj"

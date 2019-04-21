@@ -37,7 +37,7 @@
     <string name="porownaj_wyniki">Porównaj wyniki</string>
 
     #wynik
-    <string name="loguj_profil">Wybierz swój profil:</string>
+    <string name="wybierz_skale">Wybierz skale według której chcesz porównać wyniki:</string>
     <string name="porownaj">Porównaj</string>
 
     #not in use

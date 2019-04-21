@@ -10,8 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:fullBackupContent="">
+        tools:ignore="GoogleAppIndexingWarning">
 
 
         <activity android:name=".firebase.Rejestracja" />
@@ -25,11 +24,11 @@
         <activity android:name=".nawigacja.Home"/>
         <activity android:name=".firebase.Logowanie" />
         <activity android:name=".nawigacja.Main" />
-        <activity android:name=".Wynik" />
-        <activity android:name=".nawigacja.Tests" />
+        <activity android:name=".firebase.Wynik" />
+        <activity android:name=".nawigacja.Testy" />
         <activity android:name=".testy.Test1" />
         <activity android:name=".testy.Test2" />
-        <activity android:name=".nawigacja.TestPo" />
+        <activity android:name=".nawigacja.TestyPo" />
         <activity android:name=".Usun" />
     </application>
 

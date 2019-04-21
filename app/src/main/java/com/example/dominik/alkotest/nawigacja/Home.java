@@ -26,7 +26,7 @@ public class Home extends AppCompatActivity {
         before.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent testy = new Intent(Home.this, Tests.class);
+                Intent testy = new Intent(Home.this, Testy.class);
                 startActivity(testy);
             }
         });
@@ -34,7 +34,7 @@ public class Home extends AppCompatActivity {
         after.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent testy = new Intent(Home.this, TestPo.class);
+                Intent testy = new Intent(Home.this, TestyPo.class);
                 startActivity(testy);
             }
         });
