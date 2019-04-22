@@ -44,7 +44,12 @@ public class Testy extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(scoreInfo.getScore2()!=null)
                 save();
+                else{
+                    Toast.makeText(Testy.this, "Brak wyników testów.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -72,7 +77,7 @@ public class Testy extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         value = data.getStringExtra("someValue");
-        scoreInfo.setScore1(value);
+        scoreInfo.setScore2(value);
     }
 
     /**

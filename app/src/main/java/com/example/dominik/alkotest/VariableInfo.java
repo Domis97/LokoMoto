@@ -11,6 +11,12 @@ public class VariableInfo {
     private String high;
 
 
+    @Override
+    public String toString() {
+        String info = name+low+mid+high;
+        return info;
+    }
+
     public Map<String, Object> getVarInfo() {
         Map<String, Object> vareInfoMap = new HashMap<>();
         vareInfoMap.put("name",name);

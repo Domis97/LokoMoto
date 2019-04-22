@@ -13,8 +13,8 @@ public class ScoreInfo implements Serializable {
     public Map<String, Object> getScoreInfo() {
         Map<String, Object> scoreInfoMap = new HashMap<>();
         scoreInfoMap.put("uID",uID);
-        scoreInfoMap.put("test1",score1);
-        scoreInfoMap.put("test2",score2);
+        scoreInfoMap.put("score1",score1);
+        scoreInfoMap.put("score2",score2);
         return scoreInfoMap;
     }
 

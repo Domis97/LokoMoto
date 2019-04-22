@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.dominik.alkotest.R;
 import com.example.dominik.alkotest.ScoreInfo;
 import com.example.dominik.alkotest.VariableInfo;
-import com.example.dominik.alkotest.nawigacja.Testy;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,12 +23,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Klasa odpowiadająca porownanie wynikow testow
@@ -38,15 +36,11 @@ import java.util.List;
 
 public class Wynik extends AppCompatActivity {
 
-    public String zmienna;
     ScoreInfo scoreInfo = new ScoreInfo();
     VariableInfo variableInfo = new VariableInfo();
     private String wybor;
     private String wynik1;
     private String wynik2;
-    private long wynik1L;
-    private long wynik2L;
-    private long wynik;
     private String TAG = "Porownanie wynikow";
 
     @Override
@@ -58,37 +52,15 @@ public class Wynik extends AppCompatActivity {
         Bundle temp = getIntent().getExtras();//przekazani wynik2
         if (temp != null) {
             wynik2 = (String) temp.get("wartosc");
-            wynik2L = Long.valueOf(wynik2);
         }
 
         Button button = findViewById(R.id.porownaj);
         spinner();
         button.setOnClickListener(
                 new Button.OnClickListener() {
-                    /**
-                     * metoda stworzona do porownania wynikow z testu przed i testu po
-                     * porownanie wynikow i koncowe stwierdzenie stanu badanego oraz wyswietlenie tej informacji na ekran
-                     *
-                     * @param v widok
-                     */
                     @SuppressLint("SetTextI18n")
                     public void onClick(View v) {
-                        pick();
-                        Log.d(TAG,"po"+zmienna);
-
-                        profil();
-                        wynik1L = Long.valueOf(wynik1);
-                        wynik = wynik1L/wynik2L;
-                        TextView textView = findViewById(R.id.wynik_koncowy);
-                        if (wynik > Long.valueOf(variableInfo.getHigh())) {
-                            textView.setText("Stan krytyczny!");
-                            Toast.makeText(Wynik.this, "UWAGA MOGŁEŚ ULEC WYPADKOWI.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else if (wynik > Long.valueOf(variableInfo.getMid())) {
-                            textView.setText("Stan problematyczny");
-                        } else {
-                            textView.setText("Stan poprawny");
-                        }
+                        wybor();
                     }
                 }
         );
@@ -96,35 +68,7 @@ public class Wynik extends AppCompatActivity {
     }
 
     /**
-     * Pobranie globalnych wartosci porównawczych z bazy firebase
-     */
-    public void pick() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("variable").document(wybor);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data variable: " + document.getData());
-                        variableInfo = document.toObject(VariableInfo.class);
-                        zmienna = variableInfo.getHigh();
-                        Log.d(TAG,"przed"+zmienna);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-        Log.d(TAG,"po"+zmienna);
-    }
-
-
-    /**
-     * wypisanie listy utworonych wczesniej kont
+     * wypisanie listy utworonych przez administratora wartosci porównawczych
      */
 
     private void spinner() {
@@ -153,6 +97,39 @@ public class Wynik extends AppCompatActivity {
     }
 
 
+
+
+    /**
+     * Pobranie globalnych wartosci porównawczych z bazy firebase
+     */
+    public void wybor() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("variable").document(wybor);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data variable: " + document.getData());
+                        variableInfo = document.toObject(VariableInfo.class);
+                        profil();
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+
+    /**
+     * pobranie wartosci z testu pierwszego dla danego uzytkownika
+     */
+
+
     @SuppressLint("SetTextI18n")
     private void profil() {
 
@@ -166,6 +143,13 @@ public class Wynik extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data scores: " + document.getData());
                         scoreInfo = document.toObject(ScoreInfo.class);
+                        wynik1= (scoreInfo).getScore2();
+                        TextView textView = findViewById(R.id.wynik_text);
+                        textView.setText("Wynik 1 to: " + wynik1);
+
+                        TextView textView1 = findViewById(R.id.wynik_Po);
+                        textView1.setText("Wynik 2 to: " + wynik2);
+                        porwownaj();
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -174,14 +158,26 @@ public class Wynik extends AppCompatActivity {
                 }
             }
         });
+    }
 
-        wynik1=scoreInfo.getScore1();
-        TextView textView = findViewById(R.id.wynik_text);
-        textView.setText("Wynik 1 to: " + wynik1);
-
-        TextView textView1 = findViewById(R.id.wynik_Po);
-        textView1.setText("Wynik 2 to: " + wynik2);
-
+    /**
+     * metoda stworzona do porownania wynikow z testu przed i testu po
+     * porownanie wynikow i koncowe stwierdzenie stanu badanego oraz wyswietlenie tej informacji na ekran
+     *
+     */
+    public void porwownaj(){
+        Log.d(TAG,"wynik1 to : "+wynik1);
+        long wynik = Long.valueOf(wynik1) / Long.valueOf(wynik2);
+        TextView textView = findViewById(R.id.wynik_koncowy);
+        if (wynik > Long.valueOf(variableInfo.getHigh())/10) {
+            textView.setText("Stan krytyczny!");
+            Toast.makeText(Wynik.this, "UWAGA MOGŁEŚ ULEC WYPADKOWI.",
+                    Toast.LENGTH_SHORT).show();
+        } else if (wynik > Long.valueOf(variableInfo.getMid())/10) {
+            textView.setText("Stan problematyczny");
+        } else {
+            textView.setText("Stan poprawny");
+        }
     }
 
 

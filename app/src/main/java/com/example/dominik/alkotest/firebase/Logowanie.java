@@ -30,8 +30,6 @@ public class Logowanie extends AppCompatActivity {
     private String TAG = "Logowanie";
     private FirebaseAuth mAuth;
     private Button log;
-    private String emailPatternString = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    private String passowrdPatternString = "\\w{6,}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +72,8 @@ public class Logowanie extends AppCompatActivity {
         String login = editText.getText().toString();
         editText = findViewById(R.id.hasloLog);
         String haslo = editText.getText().toString();
+        String passowrdPatternString = "\\w{6,}";
+        String emailPatternString = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         if ((validation(emailPatternString, login)) && (validation(passowrdPatternString, haslo))) {
             mAuth.signInWithEmailAndPassword(login, haslo)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
