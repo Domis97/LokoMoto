@@ -13,7 +13,7 @@ import com.example.dominik.alkotest.testy.Test2;
 /**
  * Klasa odpowiadająca za obsługę testow po wypiciu alkoholu testow porownanwczych
  */
-public class TestyPo extends AppCompatActivity {
+public class TestyPorownawcze extends AppCompatActivity {
 
     protected String wartosc = "0";
 

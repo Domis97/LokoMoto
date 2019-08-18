@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 import com.example.dominik.alkotest.R;
 import com.example.dominik.alkotest.ScoreInfo;
-import com.example.dominik.alkotest.VariableInfo;
-import com.example.dominik.alkotest.firebase.Wynik;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class Home extends AppCompatActivity {
 
@@ -36,20 +36,12 @@ public class Home extends AppCompatActivity {
     }
 
     public void setUpButtonListeners() {
-        before.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent testy = new Intent(Home.this, Testy.class);
-                startActivity(testy);
-            }
+        before.setOnClickListener(v -> {
+            Intent testy = new Intent(Home.this, Testy.class);
+            startActivity(testy);
         });
 
-        after.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sprwadz();
-            }
-        });
+        after.setOnClickListener(v -> sprwadz());
     }
 
     /**
@@ -57,30 +49,27 @@ public class Home extends AppCompatActivity {
      */
     private void sprwadz(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("scores").document(FirebaseAuth.getInstance().getUid());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        ScoreInfo scoreInfo = document.toObject(ScoreInfo.class);
-                        if(scoreInfo.getScore2() == null){
-                            Toast.makeText(Home.this, "Nastąpił bład przy pobieraniu wyników pierwszego testu.",
-                                    Toast.LENGTH_SHORT).show();
-                        }else {
-                            Intent testy = new Intent(Home.this, TestyPo.class);
-                            startActivity(testy);
-                        }
-                    } else {
-                        Log.d(TAG, "No such user");
-                        Toast.makeText(Home.this, "Najpierw wykonaj pierwszy test.",
+        DocumentReference docRef = db.collection("scores").document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    ScoreInfo scoreInfo = document.toObject(ScoreInfo.class);
+                    if (scoreInfo.getScore2() == null) {
+                        Toast.makeText(Home.this, "Nastąpił bład przy pobieraniu wyników pierwszego testu.",
                                 Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "LOG2");
+                    } else {
+                        Intent testy = new Intent(Home.this, TestyPorownawcze.class);
+                        startActivity(testy);
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "No such user");
+                    Toast.makeText(Home.this, "Najpierw wykonaj pierwszy test.",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "LOG2");
                 }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
             }
         });
     }

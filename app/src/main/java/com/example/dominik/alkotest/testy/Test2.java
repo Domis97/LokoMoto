@@ -63,15 +63,15 @@ public class Test2 extends AppCompatActivity {
         randomGenerator = new Random();
         buttonArrayList = new ArrayList<>();
 
-        buttonArrayList.add((Button) findViewById(R.id.button1));
-        buttonArrayList.add((Button) findViewById(R.id.button2));
-        buttonArrayList.add((Button) findViewById(R.id.button3));
-        buttonArrayList.add((Button) findViewById(R.id.button4));
-        buttonArrayList.add((Button) findViewById(R.id.button5));
-        buttonArrayList.add((Button) findViewById(R.id.button6));
-        buttonArrayList.add((Button) findViewById(R.id.button7));
-        buttonArrayList.add((Button) findViewById(R.id.button8));
-        buttonArrayList.add((Button) findViewById(R.id.button9));
+        buttonArrayList.add(findViewById(R.id.button1));
+        buttonArrayList.add(findViewById(R.id.button2));
+        buttonArrayList.add(findViewById(R.id.button3));
+        buttonArrayList.add(findViewById(R.id.button4));
+        buttonArrayList.add(findViewById(R.id.button5));
+        buttonArrayList.add(findViewById(R.id.button6));
+        buttonArrayList.add(findViewById(R.id.button7));
+        buttonArrayList.add(findViewById(R.id.button8));
+        buttonArrayList.add(findViewById(R.id.button9));
 
         for (int i = 0; i < 9; i++) {
             buttonArrayList.get(i).setOnClickListener(clicker);
@@ -89,12 +89,7 @@ public class Test2 extends AppCompatActivity {
     public void chooseRandomButton() {
         int choosenButtonIndex = randomGenerator.nextInt(buttonArrayList.size());
         randomButton = buttonArrayList.get(choosenButtonIndex);
-        Test2.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                randomButton.setBackgroundResource(R.drawable.target);
-            }
-        });
+        Test2.this.runOnUiThread(() -> randomButton.setBackgroundResource(R.drawable.target));
 
     }
 
@@ -130,12 +125,7 @@ public class Test2 extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Test2.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        });
+        Test2.this.runOnUiThread(() -> finish());
 
 
     }

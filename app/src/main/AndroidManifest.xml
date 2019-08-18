@@ -28,7 +28,7 @@
         <activity android:name=".nawigacja.Testy" />
         <activity android:name=".testy.Test1" />
         <activity android:name=".testy.Test2" />
-        <activity android:name=".nawigacja.TestyPo" />
+        <activity android:name=".nawigacja.TestyPorownawcze" />
         <activity android:name=".Usun" />
     </application>
 
