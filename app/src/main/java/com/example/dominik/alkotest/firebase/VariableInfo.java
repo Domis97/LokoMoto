@@ -1,4 +1,4 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.firebase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +13,7 @@ public class VariableInfo {
 
     @Override
     public String toString() {
-        String info = name+low+mid+high;
-        return info;
+        return name + low + mid + high;
     }
 
     public Map<String, Object> getVarInfo() {

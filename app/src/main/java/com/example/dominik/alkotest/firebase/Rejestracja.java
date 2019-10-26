@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 
 public class Rejestracja extends AppCompatActivity {
 
-    private String TAG = "Rejestracja";
+    private String TAG = "Log." + this.getClass().getName();
     private FirebaseAuth mAuth;
     private Button rej;
     private String emailPatternString = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -43,13 +43,7 @@ public class Rejestracja extends AppCompatActivity {
     }
 
     public void setUpButtonListeners() {
-        rej.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rejestracjaFirebase();
-
-            }
-        });
+        rej.setOnClickListener(v -> rejestracjaFirebase());
     }
 
 

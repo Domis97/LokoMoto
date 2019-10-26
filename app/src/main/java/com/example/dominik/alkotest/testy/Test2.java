@@ -21,6 +21,7 @@ import static java.lang.Thread.sleep;
 public class Test2 extends AppCompatActivity {
 
 
+    private String TAG = "Log." + this.getClass().getName();
     private Test2Gra test2Gra;
     private Random randomGenerator;
     private Button randomButton;
@@ -100,23 +101,23 @@ public class Test2 extends AppCompatActivity {
     }
 
     /**
-     * setter ustawiajacy wartosc na waitingTime
-     * @param waitingTime wartosc ustawiana na waitingTime
+     * setter ustawiajacy wynikTest1 na waitingTime
+     * @param waitingTime wynikTest1 ustawiana na waitingTime
      */
     public void setWaitingTime(long waitingTime) {
         this.waitingTime = waitingTime;
     }
 
     /**
-     * ustawia result intenta (aktywności) na wartosc String przekazana w funkcji
-     * @param kaka
+     * ustawia result intenta (aktywności) na wynikTest1 String przekazana w funkcji
+     * @param score2
      * nastepnie metoda konczy aktwynosc test2
      */
 
-    public void finishGame(String kaka) {
+    public void finishGame(String score2) {
 
         Intent intent = new Intent();
-        intent.putExtra("someValue", kaka);
+        intent.putExtra("scoreValue2", score2);
         setResult(RESULT_OK, intent);
 
         try {

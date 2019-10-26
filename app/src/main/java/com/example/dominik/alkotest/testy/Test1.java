@@ -1,5 +1,6 @@
 package com.example.dominik.alkotest.testy;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,6 +14,10 @@ import android.widget.TextView;
 
 import com.example.dominik.alkotest.R;
 
+import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
+
 
 /**
  * Klasa odpowiadająca za obsługę test1
@@ -22,12 +27,12 @@ import com.example.dominik.alkotest.R;
 
 public class Test1 extends AppCompatActivity implements SensorEventListener {
 
-    private static String TAG = "Test1.class";
     TextView textView;
     TextView textViewX;
     TextView textViewY;
     TextView textViewZ;
     Button buttonStart;
+    private String TAG = "Log." + this.getClass().getName();
     private float xValueAvg, yValueAvg, zValueAvg;
     private Sensor mySensor;
     private SensorManager SM;
@@ -71,13 +76,20 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
     private void end() {
         SM.unregisterListener(this);
         show(xValueAvg, yValueAvg, zValueAvg);
+
+        double k = ((double) xValueAvg);
+        double k1 = ((double) yValueAvg);
+        double k2 = ((double) zValueAvg);
+        double[] doubles = {k, k1, k2};
         i = 0;
+        finishGame(doubles);
+
     }
 
 
     /**
      * pobieranie oraz sumowanie wartosci z sensorow
-     * oraz iteracja sluzaca do tego by wiedziec ile razy zmienila sie wartosc na sensorze
+     * oraz iteracja sluzaca do tego by wiedziec ile razy zmienila sie wynikTest1 na sensorze
      *
      * @param event zmiana
      */
@@ -88,7 +100,6 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         float xText, yText, zText, xValue = 0, yValue = 0, zValue = 0;
 
         i++;
-        Log.v(TAG, "Ilosc wartosci to: " + i);
 
         xText = event.values[0];
         xValue = xValue + xText;
@@ -115,9 +126,9 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         final Runnable runnable = new Runnable() {
             public void run() {
                 textView.setText(String.valueOf(count[0]));
-                Log.d(TAG, "Run test count: " + count[0]);
                 if (count[0]-- > 0) {
                     handler.postDelayed(this, 1000);
+
                 }
                 if (count[0] == 0) {
                     end();
@@ -126,6 +137,29 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         };
 
         handler.post(runnable);
+    }
+
+    /**
+     * ustawia result intenta (aktywności) na wynikTest1
+     *
+     * @param score nastepnie metoda konczy aktwynosc test1
+     */
+
+    public void finishGame(double[] score) {
+
+        Intent intent = new Intent();
+        intent.putExtra("scoreValue", score);
+        setResult(RESULT_OK, intent);
+
+        try {
+            sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Test1.this.runOnUiThread(() -> finish());
+
+
     }
 
 }

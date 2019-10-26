@@ -21,13 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
- * Klasa odpowiadająca za logowanie użytkowników aplikacji
+ * Klasa odpowiadająca za score_result użytkowników aplikacji
  */
 
 
 public class Logowanie extends AppCompatActivity {
 
-    private String TAG = "Logowanie";
+    private String TAG = "Log." + this.getClass().getName();
     private FirebaseAuth mAuth;
     private Button log;
 
@@ -42,13 +42,7 @@ public class Logowanie extends AppCompatActivity {
 
 
     public void setUpButtonListeners() {
-        log.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logowanieFirebase();
-
-            }
-        });
+        log.setOnClickListener(v -> logowanieFirebase());
     }
 
 
@@ -76,20 +70,17 @@ public class Logowanie extends AppCompatActivity {
         String emailPatternString = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         if ((validation(emailPatternString, login)) && (validation(passowrdPatternString, haslo))) {
             mAuth.signInWithEmailAndPassword(login, haslo)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Intent home = new Intent(Logowanie.this, Home.class);
-                                startActivity(home);
-                            } else {
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(Logowanie.this, "Błędne parametry logowania.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent home = new Intent(Logowanie.this, Home.class);
+                            startActivity(home);
+                        } else {
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(Logowanie.this, "Błędne parametry logowania.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {

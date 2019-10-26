@@ -9,11 +9,11 @@
 
 
     <TextView
-        android:id="@+id/tekstUsun"
+        android:id="@+id/usunInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="320sp"
-        android:text="@string/wybierz_profil"
+        android:text="@string/usun1"
         android:textColor="@color/colorLogo"
         android:textStyle="bold"
         android:textSize="25sp"
@@ -22,15 +22,29 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/skala"
+    <TextView
+        android:id="@+id/usunText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tekstUsun"
+        android:layout_marginBottom="320sp"
+        android:textColor="@color/colorRejestruj"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/usuwanie" />
+        app:layout_constraintTop_toBottomOf="@id/usunInfo" />
 
+    <EditText
+        android:id="@+id/usunInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/usunHint"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorLogo"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usunText" />
 
     <Button
         android:id="@+id/usuwanie"
@@ -42,6 +56,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/skala" />
+        app:layout_constraintTop_toBottomOf="@id/usunInput" />
 
 </android.support.constraint.ConstraintLayout>

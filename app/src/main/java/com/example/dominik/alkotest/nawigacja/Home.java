@@ -1,7 +1,6 @@
 package com.example.dominik.alkotest.nawigacja;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +9,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dominik.alkotest.R;
-import com.example.dominik.alkotest.ScoreInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.dominik.alkotest.Usun;
+import com.example.dominik.alkotest.firebase.ScoreInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,7 +22,7 @@ public class Home extends AppCompatActivity {
 
     private Button before;
     private Button after;
-    private String TAG = "HOME";
+    private String TAG = "Log." + this.getClass().getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,17 @@ public class Home extends AppCompatActivity {
         before = findViewById(R.id.before);
         after = findViewById(R.id.after);
         setUpButtonListeners();
+    }
+
+    /**
+     * Przelaczenie do ekranu usuwania konta przez przycisk
+     */
+
+    public void usun(View view) {
+
+        android.content.Intent myIntent = new android.content.Intent(view.getContext(), Usun.class);
+        startActivity(myIntent);
+
     }
 
     public void setUpButtonListeners() {
@@ -55,8 +64,8 @@ public class Home extends AppCompatActivity {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     ScoreInfo scoreInfo = document.toObject(ScoreInfo.class);
-                    if (scoreInfo.getScore2() == null) {
-                        Toast.makeText(Home.this, "Nastąpił bład przy pobieraniu wyników pierwszego testu.",
+                    if (scoreInfo.getScore2() == null || scoreInfo.getScore1() == null) {
+                        Toast.makeText(Home.this, "Nastąpił bład przy pobieraniu wyników testu.",
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         Intent testy = new Intent(Home.this, TestyPorownawcze.class);
@@ -64,7 +73,7 @@ public class Home extends AppCompatActivity {
                     }
                 } else {
                     Log.d(TAG, "No such user");
-                    Toast.makeText(Home.this, "Najpierw wykonaj pierwszy test.",
+                    Toast.makeText(Home.this, "Najpierw wykonaj test.",
                             Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "LOG2");
                 }

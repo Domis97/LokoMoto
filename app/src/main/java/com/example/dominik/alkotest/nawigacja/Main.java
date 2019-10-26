@@ -15,6 +15,8 @@ import com.example.dominik.alkotest.firebase.Rejestracja;
 
 public class Main extends AppCompatActivity {
 
+    private String TAG = "Log." + this.getClass().getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +46,4 @@ public class Main extends AppCompatActivity {
 
     }
 
-    /**
-     * Przelaczenie do ekranu usuwania konta przez przycisk
-     */
-
-    public void usun(View view) {
-
-        android.content.Intent myIntent = new android.content.Intent(view.getContext(), Usun.class);
-        startActivity(myIntent);
-
-    }
 }

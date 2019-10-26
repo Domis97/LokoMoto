@@ -10,6 +10,7 @@ import com.example.dominik.alkotest.testy.Test2;
 public class Test2Gra extends Thread {
 
 
+    private String TAG = "Log." + this.getClass().getName();
     private static final int ILOSCPROB = 5;
     volatile private boolean waitingForClick;
     private long waitingTime;
@@ -33,7 +34,7 @@ public class Test2Gra extends Thread {
     }
 
     /**
-     * metoda zwraca wartosc sTime w postaci String jako srednia 5
+     * metoda zwraca wynikTest1 sTime w postaci String jako srednia 5
      * porbanych wczesniej wartosci reakcji
      *
      * @return zwracam sredni czas reakcji
@@ -46,10 +47,10 @@ public class Test2Gra extends Thread {
     }
 
     /**
-     * getter zwracajacy wartosc String z wartosci long waitingTime
+     * getter zwracajacy wynikTest1 String z wartosci long waitingTime
      * @return czas do klikniecia przycisku
      */
-    public String getShow() {
+    String getShow() {
         show = Long.toString((waitingTime));
         return show;
     }
@@ -90,11 +91,11 @@ public class Test2Gra extends Thread {
     }
 
     /**
-     * setter ustwiajacy wartosc waitingForClick
+     * setter ustwiajacy wynikTest1 waitingForClick
      * @param waitingForClick boolean
      */
 
-    public void setWaitingForClick(boolean waitingForClick) {
+    void setWaitingForClick(boolean waitingForClick) {
         this.waitingForClick = waitingForClick;
     }
 

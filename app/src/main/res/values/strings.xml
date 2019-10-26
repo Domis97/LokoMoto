@@ -18,6 +18,10 @@
     <string name="rejInfo">Podaj swój adres email i hasło</string>
     <string name="rej">Zarejestruj</string>
 
+    #usun_konto
+    <string name="usun1">Jesli chcesz usunac konto oraz dane przepisz podany tekst :</string>
+    <string name="usunHint">Przepisz zawartosc</string>
+
     #home
     <string name="before">Pierwsze testy</string>
     <string name="after">Porównaj wynik</string>
@@ -43,7 +47,6 @@
     #not in use
     <string name="imie">Imię</string>
     <string name="podaj_imie">Podaj swoje imię:</string>
-    <string name="wybierz_profil">Wybierz profil:</string>
     <string name="usun_profil">Usun profil</string>
 
 

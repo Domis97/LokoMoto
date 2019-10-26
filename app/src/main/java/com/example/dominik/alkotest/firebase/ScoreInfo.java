@@ -1,12 +1,13 @@
-package com.example.dominik.alkotest;
+package com.example.dominik.alkotest.firebase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScoreInfo implements Serializable {
     private String uID;
-    private String score1;
+    private ArrayList<Double> score1;
     private String score2;
 
 
@@ -26,11 +27,11 @@ public class ScoreInfo implements Serializable {
         this.uID = uID;
     }
 
-    public String getScore1() {
+    public ArrayList<Double> getScore1() {
         return score1;
     }
 
-    public void setScore1(String score1) {
+    public void setScore1(ArrayList<Double> score1) {
         this.score1 = score1;
     }
 
