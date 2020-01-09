@@ -159,7 +159,6 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
 
         Test1.this.runOnUiThread(() -> finish());
 
-
     }
 
 }

@@ -6,56 +6,56 @@ import java.util.Map;
 public class VariableInfo {
 
     private String name;
-    private String low;
-    private String mid;
-    private String high;
-
+    private String lowT1;
+    private String midT1;
+    private String highT1;
+    private String lowT2;
+    private String midT2;
+    private String highT2;
 
     @Override
     public String toString() {
-        return name + low + mid + high;
+        return name + lowT1 + midT1 + highT1 + lowT2 + midT2 + highT2;
     }
 
     public Map<String, Object> getVarInfo() {
         Map<String, Object> vareInfoMap = new HashMap<>();
-        vareInfoMap.put("name",name);
-        vareInfoMap.put("low",low);
-        vareInfoMap.put("mid",mid);
-        vareInfoMap.put("high",high);
+        vareInfoMap.put("name", name);
+        vareInfoMap.put("lowT1", lowT1);
+        vareInfoMap.put("midT1", midT1);
+        vareInfoMap.put("highT1", highT1);
+        vareInfoMap.put("lowT2", lowT2);
+        vareInfoMap.put("midT2", midT2);
+        vareInfoMap.put("highT2", highT2);
         return vareInfoMap;
     }
-
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLowT1() {
+        return lowT1;
     }
 
-    public String getLow() {
-        return low;
+    public String getMidT1() {
+        return midT1;
     }
 
-    public void setLow(String low) {
-        this.low = low;
+    public String getHighT1() {
+        return highT1;
     }
 
-    public String getMid() {
-        return mid;
+    public String getLowT2() {
+        return lowT2;
     }
 
-    public void setMid(String mid) {
-        this.mid = mid;
+    public String getMidT2() {
+        return midT2;
     }
 
-    public String getHigh() {
-        return high;
-    }
-
-    public void setHigh(String high) {
-        this.high = high;
+    public String getHighT2() {
+        return highT2;
     }
 
 
