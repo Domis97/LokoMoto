@@ -32,9 +32,18 @@
     <string name="zapisz_wynik">Zapisz wynik</string>
 
     #test1
-    <string name="czas">Czas Reakcji</string>
+    <string name="title_test1">Test nr.1 - One leg stand</string>
+    <string name="tekst_test1_pre"><b>Test nr.1 - One leg stand </b>\n\n
+    Polega na staniu w stabilnej pozycji z jedną nogą uniesioną na wyskość 15 cm.\n
+    Telefon należy trzymać horyzontalnie.</string>
 
     #test2
+    <string name="czas">Czas Reakcji</string>
+    <string name="startTest1">Rozpocznij test</string>
+    <string name="tekst_test2_pre"><b>Test nr.2 - Kule</b>\n\n
+    Polega na jak najszybszym zaznaczaniu kul zmieniajacych kolor.\n
+    Test konczy się po zaznaczeniu ostatniej kuli.</string>
+
 
     #testpo
     <string name="testporownawczy">Wykonaj test po raz drugi by porwównać wyniki</string>

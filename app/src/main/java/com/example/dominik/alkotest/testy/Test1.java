@@ -8,22 +8,16 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dominik.alkotest.R;
-
-import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
 
 
 /**
  * Klasa odpowiadająca za obsługę test1
  */
 
-//TODO logika dla pobierania wartosci, zapis wynikow
 
 public class Test1 extends AppCompatActivity implements SensorEventListener {
 
@@ -42,15 +36,17 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test1);
-        buttonStart = findViewById(R.id.startTest1);
-        textView = findViewById(R.id.Counter);
-        textViewX = findViewById(R.id.xText);
-        textViewY = findViewById(R.id.yText);
-        textViewZ = findViewById(R.id.zText);
-
-        buttonStart.setOnClickListener(v -> testStart());
-
+        setContentView(R.layout.activity_test1_pre);
+        int SPLASH_TIME_OUT = 4500;
+        new Handler().postDelayed(() -> {
+            setContentView(R.layout.activity_test1);
+            buttonStart = findViewById(R.id.startTest1);
+            textView = findViewById(R.id.Counter);
+            textViewX = findViewById(R.id.xText);
+            textViewY = findViewById(R.id.yText);
+            textViewZ = findViewById(R.id.zText);
+            buttonStart.setOnClickListener(v -> testStart());
+        }, SPLASH_TIME_OUT);
 
     }
 
@@ -58,6 +54,7 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
 
     private void testStart() {
 
@@ -75,7 +72,6 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
 
     private void end() {
         SM.unregisterListener(this);
-        show(xValueAvg, yValueAvg, zValueAvg);
 
         double k = ((double) xValueAvg);
         double k1 = ((double) yValueAvg);
@@ -126,6 +122,7 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         final Runnable runnable = new Runnable() {
             public void run() {
                 textView.setText(String.valueOf(count[0]));
+                show(xValueAvg, yValueAvg, zValueAvg);
                 if (count[0]-- > 0) {
                     handler.postDelayed(this, 1000);
 
@@ -151,13 +148,10 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         intent.putExtra("scoreValue", score);
         setResult(RESULT_OK, intent);
 
-        try {
-            sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new Handler().postDelayed(() -> {
+            Test1.this.runOnUiThread(() -> finish());
+        }, 100);
 
-        Test1.this.runOnUiThread(() -> finish());
 
     }
 

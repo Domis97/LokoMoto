@@ -2,6 +2,7 @@ package com.example.dominik.alkotest.testy;
 
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -59,26 +60,51 @@ public class Test2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test2);
+        setContentView(R.layout.activity_test2_pre);
+        int SPLASH_TIME_OUT = 4500;
+        new Handler().postDelayed(() -> {
+            setContentView(R.layout.activity_test2);
 
-        randomGenerator = new Random();
-        buttonArrayList = new ArrayList<>();
+            randomGenerator = new Random();
+            buttonArrayList = new ArrayList<>();
 
-        buttonArrayList.add(findViewById(R.id.button1));
-        buttonArrayList.add(findViewById(R.id.button2));
-        buttonArrayList.add(findViewById(R.id.button3));
-        buttonArrayList.add(findViewById(R.id.button4));
-        buttonArrayList.add(findViewById(R.id.button5));
-        buttonArrayList.add(findViewById(R.id.button6));
-        buttonArrayList.add(findViewById(R.id.button7));
-        buttonArrayList.add(findViewById(R.id.button8));
-        buttonArrayList.add(findViewById(R.id.button9));
+            buttonArrayList.add(findViewById(R.id.button1));
+            buttonArrayList.add(findViewById(R.id.button2));
+            buttonArrayList.add(findViewById(R.id.button3));
+            buttonArrayList.add(findViewById(R.id.button4));
+            buttonArrayList.add(findViewById(R.id.button5));
+            buttonArrayList.add(findViewById(R.id.button6));
+            buttonArrayList.add(findViewById(R.id.button7));
+            buttonArrayList.add(findViewById(R.id.button8));
+            buttonArrayList.add(findViewById(R.id.button9));
 
-        for (int i = 0; i < 9; i++) {
-            buttonArrayList.get(i).setOnClickListener(clicker);
-        }
+            for (int i = 0; i < 9; i++) {
+                buttonArrayList.get(i).setOnClickListener(clicker);
+            }
 
-        runGame();
+            runGame();
+        }, SPLASH_TIME_OUT);
+
+//        setContentView(R.layout.activity_test2);
+//
+//        randomGenerator = new Random();
+//        buttonArrayList = new ArrayList<>();
+//
+//        buttonArrayList.add(findViewById(R.id.button1));
+//        buttonArrayList.add(findViewById(R.id.button2));
+//        buttonArrayList.add(findViewById(R.id.button3));
+//        buttonArrayList.add(findViewById(R.id.button4));
+//        buttonArrayList.add(findViewById(R.id.button5));
+//        buttonArrayList.add(findViewById(R.id.button6));
+//        buttonArrayList.add(findViewById(R.id.button7));
+//        buttonArrayList.add(findViewById(R.id.button8));
+//        buttonArrayList.add(findViewById(R.id.button9));
+//
+//        for (int i = 0; i < 9; i++) {
+//            buttonArrayList.get(i).setOnClickListener(clicker);
+//        }
+//
+//        runGame();
 
 
     }
