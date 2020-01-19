@@ -8,10 +8,13 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dominik.alkotest.R;
+
+import java.util.Arrays;
 
 
 /**
@@ -64,7 +67,7 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         SM = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         // Accelerometer Sensor
-        mySensor = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mySensor = SM.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
         // Register sensor Listener
         SM.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_NORMAL);
@@ -122,6 +125,7 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
         final Runnable runnable = new Runnable() {
             public void run() {
                 textView.setText(String.valueOf(count[0]));
+                Log.i(TAG, xValueAvg + String.valueOf(yValueAvg) + zValueAvg);
                 show(xValueAvg, yValueAvg, zValueAvg);
                 if (count[0]-- > 0) {
                     handler.postDelayed(this, 1000);
@@ -146,6 +150,7 @@ public class Test1 extends AppCompatActivity implements SensorEventListener {
 
         Intent intent = new Intent();
         intent.putExtra("scoreValue", score);
+        Log.i(TAG, "Final" + Arrays.toString(score));
         setResult(RESULT_OK, intent);
 
         new Handler().postDelayed(() -> {

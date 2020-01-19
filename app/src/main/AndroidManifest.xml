@@ -24,12 +24,12 @@
         <activity android:name=".nawigacja.Home"/>
         <activity android:name=".firebase.Logowanie" />
         <activity android:name=".nawigacja.Main" />
-        <activity android:name=".firebase.Wynik" />
+        <activity android:name=".nawigacja.Wynik" />
         <activity android:name=".nawigacja.Testy" />
         <activity android:name=".testy.Test1" />
         <activity android:name=".testy.Test2" />
         <activity android:name=".nawigacja.TestyPorownawcze" />
-        <activity android:name=".Usun" />
+        <activity android:name=".firebase.Usun" />
     </application>
 
 </manifest>

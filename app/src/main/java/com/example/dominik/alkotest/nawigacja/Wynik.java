@@ -1,7 +1,9 @@
-package com.example.dominik.alkotest.firebase;
+package com.example.dominik.alkotest.nawigacja;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.firebase.ScoreInfo;
+import com.example.dominik.alkotest.firebase.VariableInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,28 +46,32 @@ public class Wynik extends AppCompatActivity {
     private String test2PoWynik;
     private ArrayList<Double> test1Wynik;
     private ArrayList<Double> test1PoWynik;
+    private String globalPercentScore = "";
     private String TAG = "Log." + this.getClass().getName();
+    private List<String> spinnerArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wynik);
+        spinnerArray = mozliwosci();
+        int SPLASH_TIME_OUT = 2000;
+        new Handler().postDelayed(() -> {
+            setContentView(R.layout.activity_wynik);
+            textWynik_text = findViewById(R.id.wynik_text);
+            textWynik_po = findViewById(R.id.wynik_Po);
 
-        textWynik_text = findViewById(R.id.wynik_text);
-        textWynik_po = findViewById(R.id.wynik_Po);
+            Bundle extras = getIntent().getExtras();//przekazanie wyników
+            if (extras != null) {
+                test1PoWynik = (ArrayList<Double>) extras.get("wynikTest1");
+                test2PoWynik = (String) extras.get("wynikTest2");
 
-        Bundle extras = getIntent().getExtras();//przekazanie wyników
-        if (extras != null) {
-            test1PoWynik = (ArrayList<Double>) extras.get("wynikTest1");
-            test2PoWynik = (String) extras.get("wynikTest2");
-
-        }
-
-        Button button = findViewById(R.id.porownaj);
-        spinner();
-        button.setOnClickListener(
-                v -> wybor()
-        );
+            }
+            Button button = findViewById(R.id.porownaj);
+            spinner();
+            button.setOnClickListener(
+                    v -> wybor()
+            );
+        }, SPLASH_TIME_OUT);
 
     }
 
@@ -69,10 +81,12 @@ public class Wynik extends AppCompatActivity {
 
     private void spinner() {
 
-        List<String> spinnerArray = new ArrayList<>();
-        spinnerArray.add("own");
-        spinnerArray.add("notown");
+//        List<String> spinnerArray = new ArrayList<>();
+//        spinnerArray.add("own");
+//        spinnerArray.add("notown");
 
+
+        Log.d(TAG, spinnerArray.toString());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner sItems = findViewById(R.id.skala);
@@ -92,6 +106,30 @@ public class Wynik extends AppCompatActivity {
 
     }
 
+
+    private ArrayList<String> mozliwosci() {
+        ArrayList<String> result = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("variable")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                result.add(document.getId());
+                            }
+                        } else
+                            Log.d(TAG, "FireStore ERROR");
+                    }
+                });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     /**
      * Pobranie globalnych wartosci porównawczych z bazy firebase
@@ -160,10 +198,10 @@ public class Wynik extends AppCompatActivity {
     public void porwownaj() {
 
         TextView textView = findViewById(R.id.wynik_koncowy);
-
+        TextView textView1 = findViewById(R.id.wynik_koncowy_procenty);
         int test1 = porownajTest1();
         int test2 = porownajTest2();
-
+        textView1.setText(globalPercentScore);
         if (test1 == 1 && test2 == 1) {
             textView.setText("Stan krytyczny!");
             Toast.makeText(Wynik.this, "UWAGA MOGŁEŚ ULEC WYPADKOWI.",
@@ -182,32 +220,34 @@ public class Wynik extends AppCompatActivity {
     private String showTest1Wynik(ArrayList<Double> wynik) {
         ArrayList<String> show = new ArrayList<>();
         for (Double dou : wynik) {
-            show.add(dou.toString().substring(0, 5));
+            show.add(dou.toString());
         }
 
         return show.toString();
     }
 
-    //TODO nie działa porównanie procentów w Tescie 1
     private int porownajTest1() {
         if (test1Wynik.size() == 3 && test1PoWynik.size() == 3) {
             Double high = Double.valueOf(variableInfo.getHighT1());
             Double mid = Double.valueOf(variableInfo.getMidT1());
 
 
-            Double x = modulo(test1PoWynik.get(0)) - modulo(test1Wynik.get(0));
-            x = x / modulo(test1Wynik.get(0));
+            Double x = (test1PoWynik.get(0)) - (test1Wynik.get(0));
+            x = modulo(x / (test1Wynik.get(0)));
 
-            Double y = modulo(test1PoWynik.get(1)) - modulo(test1Wynik.get(1));
-            y = modulo(y) / modulo(test1Wynik.get(1));
+            Double y = (test1PoWynik.get(1)) - (test1Wynik.get(1));
+            y = modulo((y) / (test1Wynik.get(1)));
 
-            Double z = modulo(test1PoWynik.get(2)) - modulo(test1Wynik.get(2));
-            z = z / modulo(test1Wynik.get(2));
+            Double z = (test1PoWynik.get(2)) - (test1Wynik.get(2));
+            z = modulo(z / (test1Wynik.get(2)));
 
             ArrayList<Integer> wyniki = new ArrayList<>();
             wyniki.add(porownaj(x, mid, high));
+            globalPercentScore += "Test OLS X: " + String.valueOf(x * 100).substring(0, 4) + "%";
             wyniki.add(porownaj(y, mid, high));
+            globalPercentScore += "Test OLS Y: " + String.valueOf(y * 100).substring(0, 4) + "%";
             wyniki.add(porownaj(z, mid, high));
+            globalPercentScore += "Test OLS Z: " + String.valueOf(z * 100).substring(0, 4) + "%";
 
             Log.i(TAG, "Wyniki" + wyniki.toString());
 
@@ -228,6 +268,8 @@ public class Wynik extends AppCompatActivity {
         if (!test2PoWynik.equals("0") || !test2Wynik.equals("0")) {
             Double wynik = Double.valueOf(test2PoWynik) - Double.valueOf(test2Wynik);
             wynik = wynik / Double.valueOf(test2Wynik);
+            globalPercentScore += "Test Kule: " + String.valueOf(wynik * 100).substring(0, 4) + "%";
+            Log.d(TAG, wynik + " " + variableInfo.getHighT2() + " " + variableInfo.getMidT2());
             return porownaj(wynik, Double.valueOf(variableInfo.getHighT2()), Double.valueOf(variableInfo.getMidT2()));
         }
         return 0;

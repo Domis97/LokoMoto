@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dominik.alkotest.nawigacja.Home;
 import com.example.dominik.alkotest.R;
+import com.example.dominik.alkotest.nawigacja.Home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -70,7 +69,6 @@ public class Rejestracja extends AppCompatActivity {
         String haslo = editText.getText().toString();
         if ((validation(emailPatternString, login)) && (validation(passowrdPatternString, haslo))) {
             mAuth.createUserWithEmailAndPassword(login, haslo).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {

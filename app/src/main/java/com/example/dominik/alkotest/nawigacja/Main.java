@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.dominik.alkotest.R;
-import com.example.dominik.alkotest.Usun;
 import com.example.dominik.alkotest.firebase.Logowanie;
 import com.example.dominik.alkotest.firebase.Rejestracja;
 

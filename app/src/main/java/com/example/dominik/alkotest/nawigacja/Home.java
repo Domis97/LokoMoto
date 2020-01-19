@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dominik.alkotest.R;
-import com.example.dominik.alkotest.Usun;
+import com.example.dominik.alkotest.firebase.Usun;
 import com.example.dominik.alkotest.firebase.ScoreInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
